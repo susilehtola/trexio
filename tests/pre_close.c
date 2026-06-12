@@ -16,7 +16,7 @@ static int trexio_cleanup_test_file_pre_close(const char* file_path) {
         return 0; /* File doesn't exist, cleanup successful */
     }
     
-    rc = trexio_remove_directory_recursive(file_path);
+    rc = trexio_rm(file_path);
     return (rc == TREXIO_SUCCESS) ? 0 : 1;
 }
 

@@ -44,7 +44,7 @@ static trexio_exit_code write_file(const char* fname, double s_scale)
   const double Cp = 1.0 / sqrt(pow(M_PI / (2.0 * gp), 1.5) / (4.0 * gp));
 
   trexio_exit_code rc;
-  trexio_remove_file(fname);
+  trexio_rm(fname);
   trexio_t* file = trexio_open(fname, 'w', TREXIO_TEXT, &rc);
   if (rc != TREXIO_SUCCESS) return rc;
 
@@ -117,8 +117,8 @@ int main(void)
   if (read_dev(fb, &dev, &trace) != TREXIO_SUCCESS) { printf("FAIL read2\n"); return 2; }
   expect("perturbed MOs deviation", dev, 1.1 * 1.1 - 1.0, 1e-12);
 
-  trexio_remove_file(fa);
-  trexio_remove_file(fb);
+  trexio_rm(fa);
+  trexio_rm(fb);
 
   if (failures == 0) {
     printf("test_overlap_checks: all checks passed\n");

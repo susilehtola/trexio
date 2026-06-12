@@ -18,9 +18,9 @@ int main() {
 
   bool have_hdf5 = trexio_has_backend(TREXIO_HDF5);
   if(have_hdf5) {
-    rc = trexio_remove_file("test_all.h5");
+    rc = trexio_rm("test_all.h5");
     assert (rc == TREXIO_SUCCESS || rc == TREXIO_FILE_ERROR); /* OK if file doesn't exist */
-    rc = trexio_remove_file("test_all2.h5");
+    rc = trexio_rm("test_all2.h5");
     assert (rc == TREXIO_SUCCESS || rc == TREXIO_FILE_ERROR); /* OK if file doesn't exist */
     
     test_write("test_all.h5" , TREXIO_HDF5);
@@ -28,15 +28,15 @@ int main() {
     assert (rc == TREXIO_SUCCESS);
     test_read ("test_all2.h5", TREXIO_HDF5);
     
-    rc = trexio_remove_file("test_all.h5");
+    rc = trexio_rm("test_all.h5");
     assert (rc == TREXIO_SUCCESS);
-    rc = trexio_remove_file("test_all2.h5");
+    rc = trexio_rm("test_all2.h5");
     assert (rc == TREXIO_SUCCESS);
   }
 
-  rc = trexio_remove_directory_recursive("test_all.dir");
+  rc = trexio_rm("test_all.dir");
   assert (rc == TREXIO_SUCCESS || rc == TREXIO_FILE_ERROR); /* OK if dir doesn't exist */
-  rc = trexio_remove_directory_recursive("test_all2.dir");
+  rc = trexio_rm("test_all2.dir");
   assert (rc == TREXIO_SUCCESS || rc == TREXIO_FILE_ERROR); /* OK if dir doesn't exist */
   
   test_write("test_all.dir" , TREXIO_TEXT);
@@ -44,9 +44,9 @@ int main() {
   assert (rc == TREXIO_SUCCESS);
   test_read ("test_all2.dir", TREXIO_TEXT);
   
-  rc = trexio_remove_directory_recursive("test_all.dir");
+  rc = trexio_rm("test_all.dir");
   assert (rc == TREXIO_SUCCESS);
-  rc = trexio_remove_directory_recursive("test_all2.dir");
+  rc = trexio_rm("test_all2.dir");
   assert (rc == TREXIO_SUCCESS);
 
   return 0;

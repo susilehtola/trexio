@@ -42,7 +42,7 @@ int main(void)
   const char* fname = "test_overlap.dir";
   trexio_exit_code rc;
 
-  trexio_remove_file(fname);
+  trexio_rm(fname);
 
   /* geometry: atom 0 at origin, atom 1 at z = 1.4 */
   const double coord[6] = {0.0, 0.0, 0.0,  0.0, 0.0, 1.4};
@@ -85,7 +85,7 @@ int main(void)
   rc = trexio_compute_ao_overlap(file, 49, S);
   CHECK(rc);
   CHECK(trexio_close(file));
-  trexio_remove_file(fname);
+  trexio_rm(fname);
 
   /* AO layout: 0 = s(atom0); 1..5 = d(atom0); 6 = s(atom1). */
 #define AO(i, j) S[(i) * 7 + (j)]

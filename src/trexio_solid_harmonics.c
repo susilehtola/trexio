@@ -119,8 +119,9 @@ trexio_exit_code trexio_solid_harmonic_coeff(const int32_t l, const int32_t mval
   if (m != 0)
     prefac *= sqrt(2.0 * tsh_factorial(l - m) / tsh_factorial(l + m));
 
+  static double phase[2] = { 1.0, -1.0 };
   for (int k = 0; k <= (l - m) / 2; ++k) {
-    double ffac = pow(-1.0, k) * tsh_binom(l, k) * tsh_binom(2 * (l - k), l);
+    double ffac = phase[1 & k] * tsh_binom(l, k) * tsh_binom(2 * (l - k), l);
     if (m != 0)
       ffac *= tsh_factorial(l - 2 * k) / tsh_factorial(l - 2 * k - m);
     ffac *= prefac;

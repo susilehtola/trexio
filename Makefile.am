@@ -303,7 +303,7 @@ cppcheck: cppcheck.out
 
 cppcheck.out: $(trexio_h)
 	cd src/ && \
-	cppcheck --addon=cert -q --error-exitcode=0  \
+	cppcheck -q --error-exitcode=0  \
 	  --enable=all \
 	  --language=c --std=c99 -rp --platform=unix64  \
 	  -I../include *.c *.h 2>../$@
@@ -364,7 +364,7 @@ $(pytrexio_py): $(pytrexio_c)
 endif
 
 # Build Python module and C wrapper code for TREXIO using SWIG
-$(pytrexio_c): $(ORG_FILES) $(GENERATOR_FILES) $(trexio_h) $(pytrexio_i) $(numpy_i)
+$(pytrexio_c): FORCE $(ORG_FILES) $(GENERATOR_FILES) $(trexio_h) $(pytrexio_i) $(numpy_i)
 	@if [[ $(SWIG).x != ".x" ]] ; then \
 	cp $(trexio_h) src/ ; \
 	cd src/ && \
